@@ -28,3 +28,25 @@ class intSet(object):
         for i in self.vals:
             result = result + str(i) + ','
         return '{' + result[:-1] + '}'
+
+    def __len__(self):
+        counter = 0
+        for i in self.vals:
+            counter += 1
+        return counter
+
+    def intersect(self, otherpoint):
+        '''
+        Define an intersect method that returns a new intSet
+        containing elements that appear in both sets.
+        '''
+        common_elements = intSet()
+        if len(self.vals) <= len(otherpoint.vals):
+            for elem in self.vals:
+                if otherpoint.member(elem) ==  True:
+                    common_elements.insert(elem)
+        else:
+            for elem in otherpoint.vals:
+                if self.member(elem) == True:
+                    common_elements.insert(elem)
+        return common_elements
